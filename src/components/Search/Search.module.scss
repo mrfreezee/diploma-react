@@ -1,0 +1,46 @@
+.searchWrapper{
+    display: flex;
+    position: relative;
+    width: 80%;
+}
+
+.searchInput{
+    width: 100%;
+    height: 54px;
+    background-color: rgba(50, 53, 55, 1);
+    border-radius: 10px;
+    border: none;
+    padding-left: 15px;
+    font-family: "Exo 2", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+
+}
+
+.filtersButton{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    cursor: pointer;
+}
+
+
+span:nth-child(1){
+    width: 16px;
+}
+span:nth-child(2){
+    width: 8px;
+}
+span:nth-child(3){
+    width: 4px;
+}
+
+.searchSpan{
+    background-color: rgba(175, 178, 182, 1);
+    height: 2px;
+    border-radius: 5px;
+    margin: 2px;
+}

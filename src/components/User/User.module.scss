@@ -1,0 +1,41 @@
+.userWrapper{
+    width: 264px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 25px;
+}
+
+.userBlock{
+    display: flex;
+}
+
+.userIcon{
+    width: 56px;
+    height: 56px;
+    background-color: #7B61FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.notAuthorizedText{
+    font-family: "Exo 2", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    cursor: pointer;
+
+    &:hover{
+        color: #7B61FF;
+    }
+}
+
+.arrow{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
