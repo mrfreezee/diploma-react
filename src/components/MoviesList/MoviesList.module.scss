@@ -1,0 +1,100 @@
+.linkStyle{
+    text-decoration: none;
+}
+
+.moviesListWrapper{
+    display: grid;
+    grid-template-columns: repeat(5, 18%);
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 60px;
+
+}
+
+
+.movieCard{
+    width: 100%;
+    max-width: 266px;
+    height: 433px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.movieImgWrapper{
+    height: 357px;
+    width: 100%;
+    position: relative;
+}
+
+.movieRating{
+    width: 37px;
+    height: 28px;
+    background-color: #00A340;
+    color: white;
+    border-radius: 6px;
+    padding: 2px 8px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Exo 2", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.movieImg{
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+    border-radius: 20px;
+    object-fit: cover;
+    display: flex;
+    cursor: pointer;
+
+    &:hover{
+        border: 2px solid #917CFF;
+    }
+}
+
+.textBlock{
+    font-family: "Exo 2", sans-serif;
+    height: 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movieName{
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-block;
+
+    &:hover{
+        color: #917CFF;
+    }
+}
+
+.movieGenres{
+    display: flex;
+    color: #AFB2B6;    
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+.genresList{
+    padding: 0;
+}
+
+.genresList:nth-child(1){
+    list-style: none;
+    margin-right: 30px;
+}

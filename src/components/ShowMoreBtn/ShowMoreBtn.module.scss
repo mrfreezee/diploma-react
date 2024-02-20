@@ -1,0 +1,19 @@
+.showMoreBtn{
+    width: 161px;
+    height: 40px;
+    padding: 8px 24px;
+    border-radius: 40px;
+    color: white;
+    background-color: #323537;
+    font-family: "Exo 2", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #917CFF;
+        transform: scale(104%);
+    }
+
+}

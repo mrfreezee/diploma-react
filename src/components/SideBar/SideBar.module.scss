@@ -1,3 +1,8 @@
+.linkStyle{
+    text-decoration: none;
+    color: rgba(128, 133, 139, 1);
+}
+
 .sideBarWrapper{
     width: 160px;
 }
@@ -10,7 +15,7 @@
     margin-top: 65px;
 }
 
-li{
+.sideBarListItem{
     width: 80%;
     display: flex;
     align-items: center;
@@ -19,11 +24,11 @@ li{
     
 }
 
-li:nth-child(2){
+.sideBarListItem:nth-child(2){
     margin-left: 2px;
 }
 
-li:nth-child(3){
+.sideBarListItem:nth-child(3){
     margin-left: 2px;
 }
 

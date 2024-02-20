@@ -1,13 +1,27 @@
+link{
+  list-style: none;
+}
 
-
-
-.app{
+.dark{
   background-color: black;
+  min-height: 100vh;
+  padding: 40px 60px 0;
+}
+
+.light{
+  background-color: white;
+  min-height: 100vh;
+  padding: 40px 60px 0;
+}
+
+
+
+.contentWrapper{
   display: flex;
   justify-content: space-between;
-  height: 100vh;
-  padding: 40px 60px 0;
-
+  max-width: 1920px;
+  margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 .App {

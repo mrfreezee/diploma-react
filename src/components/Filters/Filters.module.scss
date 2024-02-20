@@ -1,0 +1,177 @@
+.filtersBackground{
+    font-family: "Exo 2", sans-serif;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.607);
+    z-index: 1;
+}
+
+
+
+.filtersWindow{
+    color: white;
+    height: 100%;
+    width: 518px;
+    background-color: #242426;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    animation: slideIn 0.5s ease-in-out; 
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+
+.filtersWindowWrapper{
+    width: 438px;
+    margin: 50px auto 0;
+}
+
+.filtersHeader{
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.closeFilters{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(110%);
+    }
+}
+
+.closeFiltersSpan{
+    width: 16px;
+    height: 2px;
+    background-color: #AFB2B6;
+    position: absolute;
+
+}
+
+.closeFiltersSpan:nth-child(1){
+    transform: rotate(45deg);
+}
+.closeFiltersSpan:nth-child(2){
+    transform: rotate(-45deg);
+}
+
+.containerForLable{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    font-family: "Exo 2", sans-serif;
+    color: #4c4e51;
+}
+.yearsFrom,.yearsTo,.enterMovieName,.ratingFrom,.ratingTo,.country{
+    padding-left: 10px;
+    padding-bottom: 4px;
+    font-family: "Exo 2", sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+    height: 52px;
+    background-color: #323537;
+    border: none;
+    margin-top: 10px;
+    color: #80858B;
+}
+
+
+.sortBy{
+    width: 99%;
+    border: 3px solid #4c4e51;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.sortButton{
+    width: 50%;
+    height: 52px;
+    background-color: inherit;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.sortButton:nth-child(1){
+    border-top-left-radius: 5px;
+}
+
+.genre{
+    width: 100%;
+    background-color: #323537;
+    height: 90px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.years, .rating{
+    display: flex;
+    justify-content: space-between;
+}
+
+.country{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+ 
+.arrowDown{
+    transform: rotate(90deg);
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.buttonsFilters{
+    width: 100%;
+    display:  flex;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+
+.clearFilter, .showResults{
+    width: 45%;
+    border: none;
+    height: 56px;
+    border-radius: 10px;
+    color: white;
+    font-family: "Exo 2", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.clearFilter{
+    background-color: #323537;
+}
+
+.showResults{
+    background-color: #7B61FF;
+}
