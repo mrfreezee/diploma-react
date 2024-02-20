@@ -6,8 +6,6 @@ type FiltersProps = {
     closeWindow: () => void
 }
 
-
-
 export const Filters = ({ closeWindow }: FiltersProps) => {
 
 

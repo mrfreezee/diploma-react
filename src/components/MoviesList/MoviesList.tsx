@@ -12,17 +12,17 @@ import { incrementPageAction } from '../../store/Movies/actions'
 
 
 export const MoviesList = () => {
-    const { moviesList, currentPage } = useSelector(selectMovies);
-    const dispatch = useDispatch<AppDispatch>();
-  
+    const { moviesList, currentPage } = useSelector(selectMovies)
+    const dispatch = useDispatch<AppDispatch>()
+
     useEffect(() => {
-      dispatch(loadMoviesAsyncAction());
-    }, [currentPage]);
-  
+        dispatch(loadMoviesAsyncAction())
+    }, [currentPage])
+
     const handleShowMore = () => {
-      dispatch(incrementPageAction());
-      dispatch(loadMoviesAsyncAction());
-    };
+        dispatch(incrementPageAction())
+        dispatch(loadMoviesAsyncAction())
+    }
 
 
 
@@ -32,12 +32,12 @@ export const MoviesList = () => {
             {moviesList.map((item) => (
                 <div className={style.movieCard} key={item.kinopoiskId}>
                     <Link to={`/movie/${item.kinopoiskId}`}>
-                    <div className={style.movieImgWrapper}>
-                        <div className={style.movieRating}>
-                            {item.ratingKinopoisk !== null ? item.ratingKinopoisk : '🎅' }
+                        <div className={style.movieImgWrapper}>
+                            <div className={style.movieRating}>
+                                {item.ratingKinopoisk !== null ? item.ratingKinopoisk : '🎅'}
+                            </div>
+                            <img className={style.movieImg} src={item.posterUrl} />
                         </div>
-                        <img className={style.movieImg} src={item.posterUrl} />
-                    </div>
                     </Link>
                     <div className={style.textBlock}>
                         <div className={style.movieName}>
@@ -52,10 +52,10 @@ export const MoviesList = () => {
                         </ul>
                     </div>
                 </div>
-                ))}
-                        <button className={style.showMoreBtn} onClick={handleShowMore}>
-        Show more
-      </button>
+            ))}
+            <button className={style.showMoreBtn} onClick={handleShowMore}>
+                Show more
+            </button>
         </div>
     )
 }

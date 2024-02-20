@@ -9,18 +9,17 @@ import { setDarkThemeAction, setLightThemeAction } from '../../store/Theme/actio
 
 export const Settings = () => {
 
-    const { theme } = useSelector(selectTheme);
-  const dispatch = useDispatch();
-  const [isDarkMode, setDarkMode] = useState(theme === 'dark');
+    const { theme } = useSelector(selectTheme)
+    const dispatch = useDispatch()
 
-  const toggleDarkMode = () => {
-    setDarkMode(!isDarkMode);
-    if (isDarkMode) {
-      dispatch(setLightThemeAction());
-    } else {
-      dispatch(setDarkThemeAction());
+    const toggleDarkMode = () => {
+        if (theme === 'dark') {
+            dispatch(setLightThemeAction())
+        } else {
+            dispatch(setDarkThemeAction())
+        }
     }
-  };
+
     return (
         <div className={style.settingsWrapper}>
             <div className={style.settingsBlocks}>
@@ -54,7 +53,7 @@ export const Settings = () => {
                         </div>
                         <div className={style.themeButton}>
                             <label className={style.switch}>
-                                <input type="checkbox" checked={isDarkMode} onChange={toggleDarkMode}/>
+                                <input type="checkbox" checked={theme === 'dark'} onChange={toggleDarkMode} />
                                 <span className={style.slider}></span>
                             </label>
                         </div>

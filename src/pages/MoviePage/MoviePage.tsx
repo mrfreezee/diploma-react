@@ -12,20 +12,20 @@ import { Action } from 'redux';
 
 
 function generateRandomNumber(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
 export const MoviePage = () => {
-    const { id } = useParams();
-    const { movieData } = useSelector(selectMovies);
+    const { id } = useParams()
+    const { movieData } = useSelector(selectMovies)
 
-    const dispatch: ThunkDispatch<AppState, unknown, Action<string>> = useDispatch();
+    const dispatch: ThunkDispatch<AppState, unknown, Action<string>> = useDispatch()
 
     useEffect(() => {
         if (id) {
-            dispatch(loadMovieDataAsyncAction(Number(id)));
+            dispatch(loadMovieDataAsyncAction(Number(id)))
         }
-    }, [id, dispatch]);
+    }, [id, dispatch])
 
     return (
         <div className={style.moviePageWrapper}>

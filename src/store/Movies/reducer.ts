@@ -16,30 +16,20 @@ export const moviesReducer = (state = initState, action: MoviesAction): MoviesSt
           ...state,
           moviesList: action.currentPage === 1 ? action.moviesList || [] : [...(state.moviesList || []), ...(action.moviesList || [])],
           moviesCount: action.moviesCount || 0,
-        };
+        }
       case 'SET_MOVIE_DATA':
         return {
           ...state,
           movieData: action.movieData,
-        };
+        }
       case 'INCREMENT_PAGE':
         return {
           ...state,
           currentPage: state.currentPage + 1,
-        };
+        }
       default:
-        return state;
+        return state
     }
-  };
+  }
 
 
-// case 'INCREMENT_PAGE':
-//     return {
-//         ...state,
-//         page: action.page,
-//     };
-// case 'SET_PAGE':
-//     return {
-//         ...state,
-//         page: action.page!
-//     }
