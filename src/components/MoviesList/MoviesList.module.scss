@@ -3,14 +3,21 @@
 }
 
 .moviesListWrapper{
+    width: 100%;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.moviesList{
     display: grid;
     grid-template-columns: repeat(5, 18%);
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: 60px;
-
 }
+
 
 
 .movieCard{
@@ -81,6 +88,10 @@
     }
 }
 
+.movieNameLight{
+    color: #242426;
+}
+
 .movieGenres{
     display: flex;
     color: #AFB2B6;    
@@ -98,3 +109,5 @@
     list-style: none;
     margin-right: 30px;
 }
+
+

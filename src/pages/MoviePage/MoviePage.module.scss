@@ -4,6 +4,8 @@
     justify-content: space-between;
     width: 100%;
     margin-top: 60px;
+    font-family: "Exo 2", sans-serif;
+
 
 }
 
@@ -73,7 +75,6 @@
     font-weight: 600;
     font-size: 40px;
     line-height: 60px;
-    font-family: "Exo 2", sans-serif;
     margin-top: 10px;
 
 }
@@ -105,7 +106,6 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
-    font-family: "Exo 2", sans-serif;
 }
 
 .duration {
@@ -118,10 +118,27 @@
 
 .storyMovie {
     margin-top: 30px;
-    font-family: Exo 2;
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
     width: 75%;
 
+}
+
+.basicInfoList{
+    font-size: 16px;
+    margin-top: 50px;
+}
+
+.infoListItem{
+    display: flex;
+    color: #AFB2B6;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.listItemData{
+    color: white;
+    font-weight: 500;
+    margin-left: 50px;
 }

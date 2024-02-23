@@ -1,6 +1,6 @@
 import { getPageData } from "../../helpers/GetPageData"
 import { AppThunk } from "../store"
-import { MoviesAction, MoviesType, SetMovieDataAction } from "./types"
+import { MoviesAction, MoviesType, SetMovieDataAction, SetMovieBoxOfficeAction } from "./types"
 
 export const loadMoviesAction = (moviesList: MoviesType[], currentPage: number, moviesCount: number): MoviesAction => ({
     type: 'LOAD_MOVIES',
@@ -14,6 +14,11 @@ export const setMovieDataAction = (movieData: MoviesType): SetMovieDataAction =>
     movieData: movieData
 })
 
+export const setMovieBoxOfficeAction = (boxOffice: number): SetMovieBoxOfficeAction => ({
+  type: 'SET_MOVIE_BOX_OFFICE',
+  boxOffice: boxOffice
+})
+
 export const incrementPageAction = (): MoviesAction => ({
     type: 'INCREMENT_PAGE',
 })
@@ -21,7 +26,7 @@ export const incrementPageAction = (): MoviesAction => ({
 export const loadMoviesAsyncAction = (): AppThunk => {
     return async (dispatch, getState) => {
       const { currentPage, limit } = getState().movies
-      const offset = (currentPage - 1) * limit;
+      const offset = (currentPage - 1) * limit
   
       try {
         const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_MOVIES&page=${currentPage}&limit=${limit}&offset=${offset}`, {
@@ -30,7 +35,7 @@ export const loadMoviesAsyncAction = (): AppThunk => {
             'X-API-KEY': '5656b648-1b44-4e56-9d17-8a5f5f492aa3',
             'Content-Type': 'application/json',
           },
-        });
+        })
   
         if (!response.ok) {
           throw new Error('Failed to fetch data')
@@ -69,6 +74,35 @@ export const loadMovieDataAsyncAction = (kinopoiskId: number): AppThunk => {
             console.error('Error fetching movie data:', error)
         }
     }
+}
+
+
+export const loadMovieBoxOfficeAsyncAction = (kinopoiskId: number): AppThunk => {
+  return async (dispatch, getState) => {
+    
+      try {
+          const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${kinopoiskId}/box_office`, {
+              method: 'GET',
+              headers: {
+                  'X-API-KEY': '5656b648-1b44-4e56-9d17-8a5f5f492aa3',
+                  'Content-Type': 'application/json',
+              },
+          })
+
+          if (!response.ok) {
+              throw new Error('Failed to fetch movie data')
+          }
+
+          const data = await response.json()
+          if (data) {
+              dispatch(setMovieBoxOfficeAction(data))
+          } else {
+              console.error('Invalid movie data format:', data)
+          }
+      } catch (error) {
+          console.error('Error fetching movie data:', error)
+      }
+  }
 }
 
 

@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { appStore } from './store/store';
+import { AuthContextProvider } from './helpers/AuthContext';
 
 
 const root = ReactDOM.createRoot(
@@ -16,9 +17,9 @@ root.render(
     <BrowserRouter>
       <Provider store={appStore}>
         {/* <ThemeContextProvider> */}
-          {/* <AuthContextProvider> */}
+          <AuthContextProvider>
             <App />
-          {/* </AuthContextProvider> */}
+          </AuthContextProvider>
         {/* </ThemeContextProvider> */}
       </Provider>
     </BrowserRouter>

@@ -2,10 +2,11 @@ import style from './ButtonForm.module.scss'
 
 type Props = {
     nameButton: string
+    onClick?: () => void
 }
 
-export const ButtonForm = ({nameButton}: Props) =>{
+export const ButtonForm = ({nameButton, onClick}: Props) =>{
     return(
-        <button className={style.buttonForm}>{nameButton}</button>
+        <button className={style.buttonForm} type='submit'>{nameButton}</button>
     )
 }

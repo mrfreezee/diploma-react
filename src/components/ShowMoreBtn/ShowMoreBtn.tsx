@@ -7,8 +7,8 @@ type Props = {
     onClick: () => void
 }
 
-export const ShowMoreBtn = ()  =>{
+export const ShowMoreBtn = ({onClick}: Props)  =>{
     return(
-        <button className={style.showMoreBtn}>Show more</button>
+        <button className={style.showMoreBtn} onClick={onClick}>Show more</button>
     )
 }

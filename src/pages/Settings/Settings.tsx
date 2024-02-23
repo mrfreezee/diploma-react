@@ -21,18 +21,18 @@ export const Settings = () => {
     }
 
     return (
-        <div className={style.settingsWrapper}>
+        <div className={theme === 'dark' ? style.settingsWrapper : `${style.settingsWrapper} ${style.settingsWrapperLignt}`}>
             <div className={style.settingsBlocks}>
                 <div className={style.settingsProfile}>
                     <div className={style.settingHeader}>Profile</div>
-                    <div className={style.settingsInputsProfile}>
+                    <div className={theme === 'dark' ? style.settingsInputsProfile : `${style.settingsInputsProfile} ${style.settingsInputsProfileLignt}`}>
                         <TextInput className={style.customTextInput} type='text' placeholder='Your name' lable='Name' />
                         <TextInput className={style.customTextInput} type='text' placeholder='Your email' lable='Email' />
                     </div>
                 </div>
                 <div className={style.settingsPassword}>
                     <div className={style.settingHeader}>Password</div>
-                    <div className={style.settingsInputsPassword}>
+                    <div className={theme === 'dark' ? style.settingsInputsPassword : `${style.settingsInputsPassword} ${style.settingsInputsPasswordLignt}`}>
                         <TextInput className={style.customPasswordInput} type='password' placeholder='Your password' lable='Password' />
                         <TextInput className={style.customPasswordInput} type='password' placeholder='New password' lable='New password' />
                         <TextInput className={style.customPasswordInput} type='password' placeholder='Confirm password' lable='Confirm password' />
@@ -42,7 +42,7 @@ export const Settings = () => {
                     <div className={style.settingHeader}>
                         Color mode
                     </div>
-                    <div className={style.settingWrapper}>
+                    <div className={theme === 'dark' ? style.settingColorMode : `${style.settingColorMode} ${style.settingColorModeLight}`}>
                         <div className={style.themeInfo}>
                             <div className={style.themeName}>
                                 Dark

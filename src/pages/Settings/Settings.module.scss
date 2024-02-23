@@ -4,6 +4,9 @@
     margin-top: 50px;
     font-family: "Exo 2", sans-serif;
 }
+.settingsWrapperLignt{
+    color: black;
+}
 
 .settingsBlocks {
     width: 100%;
@@ -29,6 +32,7 @@
     box-sizing: border-box;
 }
 
+
 .customTextInput {
     width: 48%;
 }
@@ -48,6 +52,12 @@
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: repeat(2, 50%);
 }
+
+.settingsInputsProfileLignt, .settingsInputsPasswordLignt{
+    background-color: white;
+    border: 2px solid #AFB2B6;
+}
+
 
 .customPasswordInput {
     width: 96%;
@@ -77,7 +87,7 @@
 
 }
 
-.settingWrapper{
+.settingColorMode{
     background-color: #242426;
     border-radius: 10px;
     height: 100px;
@@ -87,6 +97,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.settingColorModeLight{
+    background-color: white;
+    border: 2px solid #AFB2B6;
+
 }
 
 .themeName{

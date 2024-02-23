@@ -3,13 +3,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import { moviesReducer } from "./Movies/reducer";
 import { ThunkAction, Action } from "@reduxjs/toolkit";
 import { themeReducer } from "./Theme/reducer";
-// import { authReducer } from "./Auth/reducer";
+import { regReducer } from "./Registration/reducer";
+import { authReducer } from "./Auth/reducer";
 
 
 const rootReducer = combineReducers({
     movies: moviesReducer,
-    theme: themeReducer
-    // auth: authReducer,
+    theme: themeReducer,
+    reg: regReducer,
+    auth: authReducer
 })
 
 const store = configureStore({

@@ -24,6 +24,13 @@
     animation: slideIn 0.5s ease-in-out; 
 }
 
+.filtersWindowLignt{
+    background-color: white;
+    border-left: 2px solid #AFB2B6;
+    color: black;
+
+}
+
 @keyframes slideIn {
     from {
         transform: translateX(100%);
@@ -103,12 +110,27 @@ button{
     color: #80858B;
 }
 
+.containerSortBy{
+    padding-bottom: 30px;
+    border-bottom: 3px solid #323537;
+    margin-bottom: 30px;
+}
+.containerSortByLight{
+    border-bottom: 3px solid #AFB2B6;
+
+}
+
 
 .sortBy{
     width: 99%;
-    border: 3px solid #4c4e51;
+    border: 3px solid #323537;
     border-radius: 10px;
     margin-top: 10px;
+}
+
+.sortByLight{
+    border: 3px solid #AFB2B6;
+
 }
 
 .sortButton{
@@ -118,11 +140,25 @@ button{
     border: none;
     font-size: 16px;
     font-weight: 500;
+    cursor: pointer;
+}
+
+.sortButtonActive{
+    background-color: #323537;
+}
+.sortButtonActiveLight{
+    background-color: #AFB2B6;
+
 }
 
 .sortButton:nth-child(1){
     border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+
 }
+.sortButton:nth-child(2){
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;}
 
 .genre{
     width: 100%;
@@ -130,6 +166,12 @@ button{
     height: 90px;
     border-radius: 10px;
     margin-top: 10px;
+}
+
+.genreLight{
+    background-color: white;
+    border: 3px solid #AFB2B6;
+
 }
 
 .years, .rating{
@@ -142,7 +184,12 @@ button{
     align-items: center;
     justify-content: space-between;
 }
- 
+.countryLight{
+    background-color: white;
+    border: 3px solid #AFB2B6;
+
+}
+
 .arrowDown{
     transform: rotate(90deg);
     margin-right: 20px;
@@ -166,10 +213,18 @@ button{
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
+    cursor: pointer;
 }
 
 .clearFilter{
     background-color: #323537;
+}
+.clearFilterLignt{
+    background-color: white;
+    color: black;
+    border: 3px solid #AFB2B6;
+
+
 }
 
 .showResults{

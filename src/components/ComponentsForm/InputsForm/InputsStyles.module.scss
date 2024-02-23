@@ -1,5 +1,5 @@
 .wrapperInput{
-    height: 95px;
+    height: 87px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -22,8 +22,12 @@
     outline: none;
     padding-left: 20px;
     box-sizing: border-box;
-
     color: white;
+}
+
+.textInputLight{
+    background-color: white;
+    border: 3px solid #AFB2B6;
 }
 
 .settingsInput{

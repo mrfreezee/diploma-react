@@ -8,11 +8,13 @@ import { Link } from 'react-router-dom';
 import { loadMoviesAsyncAction } from '../../store/Movies/actions'
 import { ShowMoreBtn } from '../ShowMoreBtn/ShowMoreBtn'
 import { incrementPageAction } from '../../store/Movies/actions'
+import { selectTheme } from '../../store/Theme/selectors'
 
 
 
 export const MoviesList = () => {
     const { moviesList, currentPage } = useSelector(selectMovies)
+    const {theme} = useSelector(selectTheme)
     const dispatch = useDispatch<AppDispatch>()
 
     useEffect(() => {
@@ -29,6 +31,7 @@ export const MoviesList = () => {
 
     return (
         <div className={style.moviesListWrapper}>
+            <div className={style.moviesList}>
             {moviesList.map((item) => (
                 <div className={style.movieCard} key={item.kinopoiskId}>
                     <Link to={`/movie/${item.kinopoiskId}`}>
@@ -40,7 +43,7 @@ export const MoviesList = () => {
                         </div>
                     </Link>
                     <div className={style.textBlock}>
-                        <div className={style.movieName}>
+                        <div className={theme === 'dark' ? style.movieName : `${style.movieName} ${style.movieNameLight}`}>
                             {item.nameRu}
                         </div>
                         <ul className={style.movieGenres}>
@@ -53,9 +56,8 @@ export const MoviesList = () => {
                     </div>
                 </div>
             ))}
-            <button className={style.showMoreBtn} onClick={handleShowMore}>
-                Show more
-            </button>
+            </div>
+            <ShowMoreBtn onClick={handleShowMore}/>
         </div>
     )
 }

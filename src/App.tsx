@@ -13,7 +13,7 @@ import { ResetPasswordPage } from './pages/ResetPasswordPage/ResetPasswordPage';
 import { Settings } from './pages/Settings/Settings';
 import { useSelector } from 'react-redux';
 import { selectTheme } from './store/Theme/selectors';
-
+import { ActivationPage } from './pages/ActivationPage/ActivationPage';
 
 function App() {
   const {theme} = useSelector(selectTheme)
@@ -30,6 +30,8 @@ function App() {
             <Route path='/signup' element={<SignUpPage/>}/>
             <Route path='/resetpassword' element={<ResetPasswordPage/>}/>
             <Route path='/settings' element={<Settings/>}/>
+            <Route path='/activate' element={<ActivationPage/>}/>
+
           </Route>
         </Routes>
       </div>
