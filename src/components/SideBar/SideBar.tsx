@@ -17,14 +17,18 @@ export const SideBar = () => {
                         <span className={style.sideBarSpan}>Home</span>
                     </li>
                 </Link>
+                <Link className={style.linkStyle} to={'/trends'}>
                 <li className={style.sideBarListItem}>
                     <TrendsIcon />
                     <span className={style.sideBarSpan}>Trends</span>
                 </li>
+                </Link>
+                <Link className={style.linkStyle} to={'/favorites'}>
                 <li className={style.sideBarListItem}>
                     <FavoritesIcon />
                     <span className={style.sideBarSpan}>Favorites</span>
                 </li>
+                </Link>
                 <Link className={style.linkStyle} to='/settings'>
                     <li className={style.sideBarListItem}>
                         <SettingsIcon />

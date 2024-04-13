@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../store/store'
 import { useAuthState } from '../../store/Auth/selectors'
 import { FormEvent, useEffect, useState } from 'react'
-import { signInAction } from '../../store/Auth/actions'
+import { setSignInPasswordAction, signInAction } from '../../store/Auth/actions'
 import { useAppDispatch } from '../../helpers/Hooks'
 
 type AuthType = {
@@ -24,30 +24,50 @@ export const SignInPage = () => {
     const { theme } = useSelector(selectTheme)
 
     const dispatch = useAppDispatch()
-    const authState = useAuthState()
+    // const authState = useAuthState()
     const navigate = useNavigate()
+    const signInData = useAuthState()
 
 
     const [data, setData] = useState<Partial<AuthType>>({})
     const [errors, setErrors] = useState<Partial<AuthType>>({})
 
+    console.log(data.email, data.password)
 
     useEffect(() => {
         setErrors({
-            email: authState.errors?.email
-                ? authState.errors.email[0]
+            email: signInData.errors?.email
+                ? signInData.errors.email[0]
                 : undefined,
-            password: authState.errors?.password
-                ? authState.errors.password[0]
+            password: signInData.errors?.password
+                ? signInData.errors.password[0]
                 : undefined
         })
-    }, [authState.errors])
+    }, [signInData.errors])
 
     useEffect(() => {
-        if (authState.isAuthorized) {
+        if (signInData.isLogined) {
             navigate('/')
         }
-    }, [authState.isAuthorized])
+    }, [signInData.isLogined])
+
+    useEffect(() =>{
+        if(signInData.isLogined){
+            dispatch(setSignInPasswordAction(''))
+            dispatch({
+                type: 'SET_CLIENT_ERRORS',
+                errors: {}
+            })
+        }
+    }, [signInData.isLogined])
+
+    // const signIn = (e: FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault()
+    //     if((e.target as HTMLInputElement)?.type !== 'submit'){
+    //         return
+    //     }
+    //     dispatch(signInAction(signInData.email!, signInData.password!))
+    // }
 
     const cleanErrors = () => {
         setErrors({})
@@ -56,13 +76,11 @@ export const SignInPage = () => {
     // const inputRef = useRef<HTMLInputElement>(null)
 
     const signIn = (e: FormEvent<HTMLFormElement>): void => {
-// 
+
         e.preventDefault()
         if ((e.target as HTMLInputElement)?.type !== 'submit') {
             return
         }
-        //     const email = 'MrFreeze1'
-        // const password = '12345qwertYP'
 
         if (!data.email || !data.password) {
             setErrors({
@@ -75,6 +93,7 @@ export const SignInPage = () => {
 
         if (data.email && data.password) {
             dispatch(signInAction(data.email, data.password))
+            
         }
     }
 
@@ -95,6 +114,13 @@ export const SignInPage = () => {
     }
     
 
+    // useEffect(() => {
+    //     if (authState.isLogined) {
+    //         // Перенаправление, обновление или что-то еще
+    //         navigate('/');
+    //     }
+    // }, [authState.isLogined])
+
     return (
         <div className={theme === 'dark' ? style.pageWrapper : `${style.pageWrapper} ${style.pageWrapperLight}`}>
             <div className={style.backgroundStyle}>
@@ -109,14 +135,13 @@ export const SignInPage = () => {
                         {errors.password && <div style={{ color: 'red' }}>{errors.password}</div>}
                         <TextInput onChange={handlePassword}  type='password' placeholder='Your password' lable='Password' />
                     </div>
-                    <NavLink to='/resetpassword'>
+                    <NavLink className={style.linkStyle} to='/resetpassword'>
                         <div className={style.forgotPassword}>
                             Forgot password?
                         </div></NavLink>
-                        {/* <input type='submit' value='Sign in'></input> */}
                     <ButtonForm nameButton='Sign In'/>
                     <div className={style.haveAccBlock}>
-                        Don't have an account? <NavLink to='/signup'>Sign Up</NavLink>
+                        <span className={style.spanForm}>Don't have an account?</span> <NavLink className={style.linkStyleSign} to='/signup'>Sign Up</NavLink>
                     </div>
                 </form>
             </div>

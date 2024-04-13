@@ -22,10 +22,11 @@ export const TextInput = ({lable, type, placeholder, className, value, onChange}
 
     const [text, setText] = useState(value)
 
-    const func = (e: React.FormEvent<HTMLInputElement>) =>{
-        setText(e.currentTarget.value)
-        onChange && onChange(e.currentTarget.value)
-    }
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newText = e.currentTarget.value;
+        setText(newText);
+        onChange?.(newText);
+    };
 
     return (
         <div className={`${style.wrapperInput} ${className}`}>
@@ -39,7 +40,7 @@ export const TextInput = ({lable, type, placeholder, className, value, onChange}
             
             // ref={ref1}
             value={text} 
-            onInput={func}  
+            onInput={handleInputChange}  
             />
             
         </div>

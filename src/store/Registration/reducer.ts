@@ -2,11 +2,11 @@ import { RegistrationType, RegistrationAction, RegErrors } from "./type";
 
 
 const initState: RegistrationType = {
-    isSuccesRegistration: null
+    isSuccesRegistration: null,
 }
 
 export const regReducer = (state = initState, action: RegistrationAction): RegistrationType => {
-    
+
     switch (action.type) {
         case 'SET_REG_EMAIL':
             return {
@@ -15,6 +15,7 @@ export const regReducer = (state = initState, action: RegistrationAction): Regis
             } 
         case 'SET_REG_USERNAME':
             return {
+                
                 ...state,
                 username: action.payload as string
             }

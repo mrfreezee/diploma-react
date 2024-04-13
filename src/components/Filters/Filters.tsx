@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { selectTheme } from '../../store/Theme/selectors'
 import { TextInput } from '../ComponentsForm/InputsForm/InputText'
+import { sortByRatingAction, sortByYearAction } from '../../store/Movies/reducer'
+import { useAppDispatch } from '../../helpers/Hooks'
+import { filterByYearAction } from '../../store/Movies/actions'
 
 type FiltersProps = {
     closeWindow: () => void
@@ -11,12 +14,30 @@ type FiltersProps = {
 
 export const Filters = ({ closeWindow }: FiltersProps) => {
 
-    const [isActiveBtn, setActiveBtn] = useState('rating')
+    const { theme } = useSelector(selectTheme)
+
+    const dispatch = useAppDispatch()
+
+    const [isActiveBtn, setActiveBtn] = useState('year')
 
     const handleButtonClick = (btnType: string) => {
         setActiveBtn(btnType)
     }
-    const { theme } = useSelector(selectTheme)
+
+    const [fromYear, setFromYear] = useState('');
+    const [toYear, setToYear] = useState('');
+
+    const handleShowResults = () => {
+        const fromYearInt = parseInt(fromYear, 10);
+        const toYearInt = parseInt(toYear, 10);
+
+        if (!isNaN(fromYearInt) && !isNaN(toYearInt)) {
+            dispatch(filterByYearAction(fromYearInt, toYearInt));
+        } else {
+            console.error('Invalid year values');
+        }
+    };
+
 
     return (
         <div className={style.filtersBackground}>
@@ -35,14 +56,20 @@ export const Filters = ({ closeWindow }: FiltersProps) => {
                             <button
                                 className={isActiveBtn === 'rating' ? style.sortButton : `${style.sortButton} ${style.sortButtonActive}` &&
                                     theme === 'dark' ? style.sortButton : `${style.sortButton} ${style.sortButtonActiveLight}`}
-                                onClick={() => handleButtonClick('year')}
+                                onClick={() => {
+                                    dispatch(sortByRatingAction())
+                                    handleButtonClick('year')
+                                }}
                             >
                                 Rating
                             </button>
                             <button
                                 className={isActiveBtn === 'year' ? style.sortButton : `${style.sortButton} ${style.sortButtonActive}` &&
                                     theme === 'dark' ? style.sortButton : `${style.sortButton} ${style.sortButtonActiveLight}`}
-                                onClick={() => handleButtonClick('rating')}
+                                onClick={() => {
+                                    dispatch(sortByYearAction())
+                                    handleButtonClick('rating')
+                                }}
                             >
                                 Year
                             </button>
@@ -56,12 +83,20 @@ export const Filters = ({ closeWindow }: FiltersProps) => {
                         </div>
                     </div>
                     <div className={style.years}>
-                        <TextInput type='text' placeholder='From' lable='Years' />
-                        <TextInput type='text' placeholder='To' />
+                        <div className={style.wrapperInp}>
+                            <TextInput value={fromYear}  type='text' placeholder='From' lable='Years' />
+                        </div>
+                        <div className={style.wrapperInp}>
+                            <TextInput value={toYear} type='text' placeholder='To' />
+                        </div>
                     </div>
                     <div className={style.rating}>
-                        <TextInput type='text' placeholder='From' lable='Rating' />
-                        <TextInput type='text' placeholder='To' />
+                        <div className={style.wrapperInp}>
+                            <TextInput type='text' placeholder='From' lable='Rating' />
+                        </div>
+                        <div className={style.wrapperInp}>
+                            <TextInput type='text' placeholder='To' />
+                        </div>
                     </div>
                     <div className={style.containerForLable}>
                         <label className={style.filtersLable}>Country</label>
@@ -74,7 +109,7 @@ export const Filters = ({ closeWindow }: FiltersProps) => {
                     </div>
                     <div className={style.buttonsFilters}>
                         <button className={theme === 'dark' ? style.clearFilter : `${style.clearFilter} ${style.clearFilterLignt}`}>Clear filter</button>
-                        <button className={style.showResults}>Show results</button>
+                        <button className={style.showResults} onClick={handleShowResults}>Show results</button>
                     </div>
                 </div>
             </div>

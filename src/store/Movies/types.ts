@@ -15,6 +15,8 @@ export type MoviesType = {
   posterUrl: string
   description: string
   filmLength: number
+  reviewsCount: number
+  slogan: string
 }
 
 
@@ -24,8 +26,16 @@ export type MoviesState = {
   currentPage: number
   limit: number
   moviesCount: number
-  boxOffice?: number
-}
+  boxOffice?: {
+    total: number
+    items: {
+      type: string
+      amount: number
+      currencyCode: string
+      name: string
+      symbol: string
+    }[]
+}}
 
 
 export type MoviesAction = {
@@ -34,8 +44,18 @@ export type MoviesAction = {
   movieData?: MoviesType
   currentPage?: number
   moviesCount?: number
-  boxOffice?: number
-
+  boxOffice?: {
+    total: number
+    items: {
+      type: string
+      amount: number
+      currencyCode: string
+      name: string
+      symbol: string
+    }[]
+  }
+  fromYear?: number | undefined
+  toYear?: number | undefined
 }
 
 export type SetMovieDataAction = {
@@ -45,5 +65,14 @@ export type SetMovieDataAction = {
 
 export type SetMovieBoxOfficeAction = {
   type: 'SET_MOVIE_BOX_OFFICE'
-  boxOffice: number
+  boxOffice: {
+    total: number
+    items: {
+      type: string
+      amount: number
+      currencyCode: string
+      name: string
+      symbol: string
+    }[]
+  }
 }

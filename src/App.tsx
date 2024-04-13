@@ -14,28 +14,33 @@ import { Settings } from './pages/Settings/Settings';
 import { useSelector } from 'react-redux';
 import { selectTheme } from './store/Theme/selectors';
 import { ActivationPage } from './pages/ActivationPage/ActivationPage';
+import { Trends } from './pages/TrendsPage/TrendsPage';
+import { FavoritesPage } from './pages/FavoritesPage/FavoritesPage';
+import { RequierAuth } from './helpers/RequireAuth';
 
 function App() {
-  const {theme} = useSelector(selectTheme)
+  const { theme } = useSelector(selectTheme)
 
   return (
     <div className={theme}>
       <div className='contentWrapper'>
-        <SideBar/>
+        <SideBar />
         <Routes>
-          <Route path='/' element={<Main/>}>
-            <Route index element={<MoviesList/>} />
+          <Route path='/' element={<Main />}>
+            <Route index element={<MoviesList />} />
             <Route path='/movie/:id' element={<MoviePage />} />
-            <Route path='/signin' element={<SignInPage/>}/>
-            <Route path='/signup' element={<SignUpPage/>}/>
-            <Route path='/resetpassword' element={<ResetPasswordPage/>}/>
-            <Route path='/settings' element={<Settings/>}/>
-            <Route path='/activate' element={<ActivationPage/>}/>
-
-          </Route>
-        </Routes>
-      </div>
+            <Route path='/signin' element={<SignInPage />} />
+            <Route path='/signup' element={<SignUpPage />} />
+            <Route path='/resetpassword' element={<ResetPasswordPage />} />
+            <Route path='/settings' element={<Settings />} />
+            <Route path='/activate' element={<ActivationPage />} />
+            <Route path='/trends' element={<Trends />} />
+            {/* <Route path='/favorites' element={<FavoritesPage/>}/> */}
+            <Route path='/favorites' element={<RequierAuth><FavoritesPage/></RequierAuth>}/>
+        </Route>
+      </Routes>
     </div>
+    </div >
   )
 }
 

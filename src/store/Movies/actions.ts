@@ -14,40 +14,47 @@ export const setMovieDataAction = (movieData: MoviesType): SetMovieDataAction =>
     movieData: movieData
 })
 
-export const setMovieBoxOfficeAction = (boxOffice: number): SetMovieBoxOfficeAction => ({
+export const setMovieBoxOfficeAction = (boxOffice: SetMovieBoxOfficeAction['boxOffice']): SetMovieBoxOfficeAction => ({
   type: 'SET_MOVIE_BOX_OFFICE',
-  boxOffice: boxOffice
-})
+  boxOffice,
+});
 
 export const incrementPageAction = (): MoviesAction => ({
     type: 'INCREMENT_PAGE',
 })
 
+export const filterByYearAction = (fromYear: number, toYear: number): MoviesAction => ({
+  type: 'FILTER_BY_YEAR',
+  fromYear,
+  toYear,
+})
+
+
 export const loadMoviesAsyncAction = (): AppThunk => {
-    return async (dispatch, getState) => {
-      const { currentPage, limit } = getState().movies
-      const offset = (currentPage - 1) * limit
-  
-      try {
-        const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_MOVIES&page=${currentPage}&limit=${limit}&offset=${offset}`, {
-          method: 'GET',
-          headers: {
-            'X-API-KEY': '5656b648-1b44-4e56-9d17-8a5f5f492aa3',
-            'Content-Type': 'application/json',
-          },
-        })
-  
-        if (!response.ok) {
-          throw new Error('Failed to fetch data')
-        }
-  
-        const data = await response.json();
-        dispatch(loadMoviesAction(data.items, currentPage, data.count))
-      } catch (error) {
-        console.error('Error fetching movies:', error)
+  return async (dispatch, getState) => {
+    const { currentPage, limit } = getState().movies
+    const offset = (currentPage - 1) * limit
+
+    try {
+      const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_MOVIES&page=${currentPage}&limit=${limit}&offset=${offset}`, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': 'c8bf6612-9f17-437e-bff2-428c170dafc9',
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data')
       }
+
+      const data = await response.json();
+      dispatch(loadMoviesAction(data.items, currentPage, data.count))
+    } catch (error) {
+      console.error('Error fetching movies:', error)
     }
   }
+}
 
 export const loadMovieDataAsyncAction = (kinopoiskId: number): AppThunk => {
     return async (dispatch, getState) => {
@@ -55,7 +62,7 @@ export const loadMovieDataAsyncAction = (kinopoiskId: number): AppThunk => {
             const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${kinopoiskId}`, {
                 method: 'GET',
                 headers: {
-                    'X-API-KEY': '5656b648-1b44-4e56-9d17-8a5f5f492aa3',
+                    'X-API-KEY': 'c8bf6612-9f17-437e-bff2-428c170dafc9',
                     'Content-Type': 'application/json',
                 },
             })
@@ -84,7 +91,7 @@ export const loadMovieBoxOfficeAsyncAction = (kinopoiskId: number): AppThunk => 
           const response = await fetch(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${kinopoiskId}/box_office`, {
               method: 'GET',
               headers: {
-                  'X-API-KEY': '5656b648-1b44-4e56-9d17-8a5f5f492aa3',
+                  'X-API-KEY': 'c8bf6612-9f17-437e-bff2-428c170dafc9',
                   'Content-Type': 'application/json',
               },
           })
@@ -94,6 +101,7 @@ export const loadMovieBoxOfficeAsyncAction = (kinopoiskId: number): AppThunk => 
           }
 
           const data = await response.json()
+          console.log('сборы', data)
           if (data) {
               dispatch(setMovieBoxOfficeAction(data))
           } else {

@@ -5,13 +5,20 @@ import { ThunkAction, Action } from "@reduxjs/toolkit";
 import { themeReducer } from "./Theme/reducer";
 import { regReducer } from "./Registration/reducer";
 import { authReducer } from "./Auth/reducer";
+import { MoviesState } from "./Movies/types";
+import { favoritesReducer } from "./Favorites/reducer";
+import { userReducer } from "./UserProfile/reducer";
+// import { authReducer } from "../helpers/AuthContext";
 
 
 const rootReducer = combineReducers({
     movies: moviesReducer,
     theme: themeReducer,
     reg: regReducer,
-    auth: authReducer
+    auth: authReducer,
+    favorites: favoritesReducer,
+    user: userReducer
+    // authSignin: authLoginedReducer
 })
 
 const store = configureStore({

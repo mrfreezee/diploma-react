@@ -1,17 +1,8 @@
-import { ReactNode, createContext, useContext, useReducer } from "react"
+import { ReactNode, createContext, useContext, useEffect, useReducer } from "react"
+import { useRegState } from "../store/Registration/selectors"
+import { AuthErrors, AuthState } from "../store/Auth/type";
+import { authReducer } from "../store/Auth/reducer";
 
-type AuthState = {
-    isLogined: boolean
-    userName?: string
-    initials?: string
-}
-
-type AuthAction = {
-    type: string  //... должен быть всегда 
-    userName?: string
-    initials?: string
-    //... кастомные ключи
-}
 
 type AuthContextType = {
     state: AuthState
@@ -24,49 +15,46 @@ type ProviderProps = {
 }
 
 const authInitState: AuthState = {
-    isLogined: false
+    isLogined: false,
 }
 
 
 export const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
-const authReducer = (state: AuthState, action: AuthAction): AuthState =>{
-    switch(action.type){
-        case 'login':
-            return{
-                isLogined: true,
-                userName: action.userName,
-                initials: action.initials
 
-            }
-        case 'logout':
-            return{
-                isLogined: false
-            }
-        default:
-            return state
 
-    }
-}
-
-export const AuthContextProvider = ({children}: ProviderProps) => {
+export const AuthContextProvider = ({ children }: ProviderProps) => {
     const [state, dispatch] = useReducer(authReducer, authInitState)
+    const formData = useRegState()
 
-    
+    // useEffect(() => {
+    //     const savedAuthState = localStorage.getItem('authState');
+    //     if (savedAuthState) {
+    //         dispatch({
+    //             type: 'LOGIN_SUCCESS',
+    //             userName: savedAuthState.userName,
+    //             initials: savedAuthState.userName,
+    //         })
+    //     }
+    // }, [])
+
     const login = () => dispatch({
-        type: 'login',
-        userName: `${prompt('Введите имя')}`,
-        initials: 'NM'
+        type: 'LOGIN_SUCCESS',
+        userName: formData.username || '',
+        initials: formData.username || '',
+        email: formData.email || ''
+        
+        
     })
 
     const logout = () => dispatch({
-        type: 'logout'
+        type: 'LOGOUT'
     })
 
-    const value = {
-        state: state,
-        login: login,
-        logout: logout
+    const value: AuthContextType = {
+        state,
+        login,
+        logout
     }
 
     return (
@@ -76,6 +64,7 @@ export const AuthContextProvider = ({children}: ProviderProps) => {
     )
 }
 
-export const useAuthContext = () =>{
+
+export const useAuthContext = () => {
     return useContext(AuthContext)
 }

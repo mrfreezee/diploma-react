@@ -1,49 +1,28 @@
-import style from './MoviesList.module.scss'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from "react"
+import style from '../../components/MoviesList/MoviesList.module.scss'
 import { selectMovies } from '../../store/Movies/selectors'
-import { useDispatch } from "react-redux"
-import { AppDispatch } from "../../store/store"
-import { Link } from 'react-router-dom';
-import { loadMoviesAsyncAction } from '../../store/Movies/actions'
-import { ShowMoreBtn } from '../ShowMoreBtn/ShowMoreBtn'
-import { incrementPageAction } from '../../store/Movies/actions'
 import { selectTheme } from '../../store/Theme/selectors'
+import { Link } from 'react-router-dom'
+import { TrendsIcon } from './TrendsIcon'
 
 
-function getRandomNumber(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min
-}
 
-const randomRating = getRandomNumber(5, 8)
-
-
-export const MoviesList = () => {
-    const { moviesList, currentPage } = useSelector(selectMovies)
+export const Trends = () => {
+    const { moviesList } = useSelector(selectMovies)
     const { theme } = useSelector(selectTheme)
-    const dispatch = useDispatch<AppDispatch>()
 
-    useEffect(() => {
-        dispatch(loadMoviesAsyncAction())
-    }, [currentPage])
-
-    const handleShowMore = () => {
-        dispatch(incrementPageAction())
-        dispatch(loadMoviesAsyncAction())
-    }
-
-    
-
+    const trendingMovies = moviesList.filter((item) => item.ratingKinopoisk !== null && item.ratingKinopoisk > 8)
 
     return (
         <div className={style.moviesListWrapper}>
             <div className={style.moviesList}>
-                {moviesList.map((item) => (
+                {trendingMovies.map((item) => (
                     <div className={style.movieCard} key={item.kinopoiskId}>
                         <Link to={`/movie/${item.kinopoiskId}`}>
                             <div className={style.movieImgWrapper}>
-                                <div className={style.movieRating}>
-                                    {item.ratingKinopoisk !== null ? item.ratingKinopoisk : randomRating}
+                                <div className={`${style.movieRating} ${style.movieRatingTrends}`}>
+                                    <TrendsIcon />
+                                    <div className={style.numberWrapper}>{item.ratingKinopoisk}</div>
                                 </div>
                                 <img className={style.movieImg} src={item.posterUrl} />
                             </div>
@@ -65,7 +44,6 @@ export const MoviesList = () => {
                     </div>
                 ))}
             </div>
-            <ShowMoreBtn onClick={handleShowMore} />
         </div>
     )
 }

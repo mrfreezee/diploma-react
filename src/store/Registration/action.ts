@@ -1,6 +1,9 @@
 import { RegistrationAction } from "./type";
 import { AppThunk } from "../store";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { loginFailure, loginSuccess } from "../Auth/actions";
+// import { loginFailure, loginSuccess } from "../../helpers/AuthContext";
+// import { getUserInfoAction } from "../Auth/actions";
 
 // wiyohog328@massefm.com
 // dfsdfsdsdddssda
@@ -25,7 +28,8 @@ export const setPasswordAction = (password: string): RegistrationAction => ({
 export const sendRegDataAction = (): AppThunk => {
     return (dispatch, getState) => {
         const formData = getState().reg
-        
+
+
         const request = new Request(`https://studapi.teachmeskills.by/auth/users/`,
             {
                 method: 'POST',
@@ -35,7 +39,8 @@ export const sendRegDataAction = (): AppThunk => {
                 body: JSON.stringify({
                     username: formData.username,
                     email: formData.email,
-                    password: formData.password
+                    password: formData.password,
+
                 })
             }
         )
@@ -45,14 +50,18 @@ export const sendRegDataAction = (): AppThunk => {
                 const status = res.status
                 return [await res.json(), status]
             })
-            .then(([res, status]) => {
-
-                if (status.toString()[0] === 2) {
+            
+            .then(([res, status]) => {                    
+                if (status.toString()[0] === '2') {
+                    const userId = res.userId
+                    dispatch(loginSuccess(formData.username || '', formData.username || ''));
                     dispatch({
-                        type: 'REG_SUCCES'
+                        type: 'REG_SUCCES',
+                        
                     })
                 }
-                if (status.toString()[0] === 4) {
+                if (status.toString()[0] === '4') {
+                    dispatch(loginFailure(res))
                     dispatch({
                         type: 'REG_FAILURE',
                         payload: res

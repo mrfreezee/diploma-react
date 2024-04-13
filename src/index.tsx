@@ -16,11 +16,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={appStore}>
-        {/* <ThemeContextProvider> */}
           <AuthContextProvider>
             <App />
           </AuthContextProvider>
-        {/* </ThemeContextProvider> */}
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

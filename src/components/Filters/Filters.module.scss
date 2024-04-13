@@ -219,6 +219,10 @@ button{
 .clearFilter{
     background-color: #323537;
 }
+.clearFilter:hover{
+    background-color: #80858B;
+}
+
 .clearFilterLignt{
     background-color: white;
     color: black;
@@ -229,4 +233,11 @@ button{
 
 .showResults{
     background-color: #7B61FF;
+}
+.showResults:hover{
+    background-color:  #917CFF;
+}
+
+.wrapperInp{
+    width: 45%;
 }

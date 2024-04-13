@@ -3,6 +3,11 @@
     display: flex;
     justify-content: space-between;
     margin-left: 25px;
+    position: relative;
+    font-family: "Exo 2", sans-serif;
+    font-size: 16px;
+
+
 }
 
 .userBlock{
@@ -19,9 +24,7 @@
     border-radius: 10px;
 }
 
-.notAuthorizedText{
-    font-family: "Exo 2", sans-serif;
-    font-size: 16px;
+.authorizedText{
     font-weight: 600;
     color: white;
     display: flex;
@@ -34,8 +37,46 @@
     }
 }
 
+.authorizedTextLight{
+    color: black;
+}
+
 .arrow{
     display: flex;
     align-items: center;
     margin-top: 5px;
+}
+
+.arrowRotate{
+    transform: rotate(89deg);
+}
+
+.linkStyle{
+    text-decoration: none;
+    color: inherit;
+}
+
+.userActions{
+    background-color:  #242426;
+    border-radius: 10px;
+    position: absolute;
+    width: 100%;
+    margin-top: 80px;
+    z-index: 1;
+}
+
+.editProfile{
+    border-bottom: 1px solid #323537 ;
+}
+
+.editProfile, .logOut{
+    cursor: pointer;
+    color: white;
+    padding: 20px 0 20px 20px;
+}
+
+.userInitial{
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
 }
